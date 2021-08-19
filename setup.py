@@ -4,8 +4,8 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="jsf",
-    version="0.3.2",
+    name="trovata_jsf",
+    version="1.0.0",
     author="ghandic",
     description="Creates fake JSON files from a JSON schema",
     long_description=long_description,
@@ -13,7 +13,7 @@ setuptools.setup(
     package_dir={"": "src"},
     packages=setuptools.find_packages("src", exclude=["tests"]),
     install_requires=["rstr", "faker", "smart_open", "jsonschema", "typer", "pydantic"],
-    url="https://github.com/ghandic/jsf",
+    url="https://github.com/TrovataEngineering/jsf",
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
