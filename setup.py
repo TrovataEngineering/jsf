@@ -10,8 +10,8 @@ setuptools.setup(
     description="Creates fake JSON files from a JSON schema",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    package_dir={"": "src"},
-    packages=setuptools.find_packages("src", exclude=["tests"]),
+    # package_dir={"": "src"},
+    packages=setuptools.find_packages(include=["src", "src.*"], exclude=["src.tests"]),
     install_requires=["rstr", "faker", "smart_open", "jsonschema", "typer", "pydantic"],
     url="https://github.com/TrovataEngineering/jsf",
     classifiers=[
