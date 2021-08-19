@@ -135,7 +135,7 @@ class JSF:
                         cls = deepcopy(obj)
                 cls.name = name
                 cls.path = path
-                return cls
+            return cls
         else:
             raise ValueError(f"Cannot parse schema {repr(schema)}")  # pragma: no cover
 
