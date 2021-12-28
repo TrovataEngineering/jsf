@@ -112,6 +112,30 @@ class JSF:
             cls.name = name
             cls.path = path
             return cls
+        elif "allOf" in schema:
+            for obj in schema["allOf"]:
+                if "$ref" in obj:
+                    ext, frag = obj["$ref"].split("#")
+                    if ext == "":
+                        try:
+                            cls.update(deepcopy(self.definitions.get(f"#{frag}")))
+                        except:
+                            cls = deepcopy(self.definitions.get(f"#{frag}"))
+                    else:
+                        with s_open(ext, "r") as f:
+                            external_jsf = JSF(json.load(f))
+                        try:
+                            cls.update(deepcopy(external_jsf.definitions.get(f"#{frag}")))
+                        except:
+                            cls = deepcopy(external_jsf.definitions.get(f"#{frag}"))
+                else:
+                    try:
+                        cls.update(obj)
+                    except:
+                        cls = deepcopy(obj)
+                cls.name = name
+                cls.path = path
+            return cls
         else:
             raise ValueError(f"Cannot parse schema {repr(schema)}")  # pragma: no cover
 
